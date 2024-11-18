@@ -1,0 +1,155 @@
+<core:FragmentDefinition xmlns:forms="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m" xmlns="sap.uxap" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<ui:Table id="DropShipItemsTable" rows="{defaultValueModel>/DetailItems}" selectionMode="None" visibleRowCount="10" enableCellFilter="false"
+		sort="handleSort" filter="handleFilter" showColumnVisibilityMenu="true" class="sapUiContentPadding">
+		<ui:extension>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:ComboBox id="MessageFilterDropDown" items="{ path: 'GlobalModel>/MessageFilters/items', sorter: { path: 'Text' } }"
+					change="handleMessageFilterChange"  visible="{defaultValueModel>/DisplaySettings/editable}" enabled="{= ${defaultValueModel>/DetailItems}.length > 0}">
+					<core:Item key="{GlobalModel>Key}" text="{GlobalModel>Text}"/>
+				</m:ComboBox>
+				<m:Button type="Transparent" press="DropShipItemsAdd" icon="sap-icon://add" tooltip="{i18n>reversalItemsAddTooltip}"
+					visible="{defaultValueModel>/DisplaySettings/editable}"/>
+				<m:Button type="Transparent" press="onValidate" icon="sap-icon://process" tooltip="{i18n>populateFieldsTooltip}"
+					visible="{defaultValueModel>/DisplaySettings/editable}" enabled="{= ${RequestModel>/Items}.length > 0}"/>
+				<m:Button type="Transparent" press="onDeleteAll" icon="sap-icon://delete" tooltip="{i18n>deleteAllTooltip}"
+					visible="{defaultValueModel>/DisplaySettings/editable}" enabled="{= ${RequestModel>/Items}.length > 0}"/>
+				<m:Button type="Transparent" press="onUploadDataPress" icon="sap-icon://upload" tooltip="{i18n>uploadTooltip}"
+					visible="{defaultValueModel>/DisplaySettings/editable}"/>
+				<m:Button type="Transparent" press="onDownloadTemplate" icon="sap-icon://download" tooltip="{i18n>downloadTooltip}"
+					visible="{defaultValueModel>/DisplaySettings/editable}"/>
+				<m:Button type="Transparent" press="onDownloadItems" icon="sap-icon://excel-attachment" tooltip="{i18n>downloadItemsTooltip}" visible="true"
+					enabled="{= ${RequestModel>/Items}.length > 0}"/>
+			</m:OverflowToolbar>
+		</ui:extension>
+		<ui:columns>
+			<ui:Column hAlign="Center" width="7rem" sortProperty="POLineItem" filterProperty="POLineItem" tooltip="{i18n>POLineItem}">
+				<m:Label text="{i18n>POLineItem}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>POLineItem}" valueState="{defaultValueModel>ValueState/POLineItem}"
+						editable="{defaultValueModel>/DisplaySettings/editable}" change="onPOLineItem" type="Number"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="8rem" sortProperty="SitePO" filterProperty="SitePO" tooltip="{i18n>SitePO}">
+				<m:Label text="{i18n>SitePO}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>SitePO}" valueState="{defaultValueModel>ValueState/SitePO}"
+						editable="{defaultValueModel>/DisplaySettings/editable}" valueStateText="{defaultValueModel>ValueState/SitePOText}" change="onSitePO"
+						type="Number"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column id="ColValue" hAlign="Center" width="6rem" sortProperty="ImacPO" filterProperty="ImacPO" tooltip="{i18n>ImacPO}">
+				<m:Label text="{i18n>ImacPO}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>ImacPO}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="10rem" sortProperty="PackingList" filterProperty="PackingList" tooltip="{i18n>PackingList}">
+				<m:Label text="{i18n>PackingList}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>PackingList}" change="handleValueChange" editable="{defaultValueModel>/DisplaySettings/editable}"
+						valueState="{defaultValueModel>ValueState/PackingList}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="10rem" sortProperty="Material" filterProperty="Material" tooltip="{i18n>Material}">
+				<m:Label text="{i18n>Material}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>Material}" change="handleValueChange" editable="{defaultValueModel>/DisplaySettings/editable}"
+						valueStateText="{defaultValueModel>ValueState/MaterialText}" valueState="{defaultValueModel>ValueState/Material}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="13rem" sortProperty="Description" filterProperty="Description" tooltip="{i18n>Description}">
+				<m:Label text="{i18n>Description}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>Description}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="5rem" sortProperty="Quantity" filterProperty="Quantity" tooltip="{i18n>Quantity}">
+				<m:Label text="{i18n>Quantity}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>Quantity}" valueState="{defaultValueModel>ValueState/Quantity}"
+						editable="{defaultValueModel>/DisplaySettings/editable}" type="Number" change="onQuantity"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="4rem" sortProperty="UOM" filterProperty="UOM" tooltip="{i18n>UOM}">
+				<m:Label text="{i18n>UOM}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>UOM}" valueState="{defaultValueModel>ValueState/UOM}"
+						editable="{defaultValueModel>/DisplaySettings/editable}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="8rem" sortProperty="HS" filterProperty="HS" tooltip="{i18n>HS}">
+				<m:Label text="{i18n>HS}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>HS}" valueState="{defaultValueModel>ValueState/HS}"
+						editable="{defaultValueModel>/DisplaySettings/editable}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="6rem" sortProperty="ECN" filterProperty="ECN" tooltip="{i18n>ECN}">
+				<m:Label text="{i18n>ECN}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>ECN}" valueState="{defaultValueModel>ValueState/ECN}"
+						editable="{defaultValueModel>/DisplaySettings/editable}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="8rem" sortProperty="COO" filterProperty="COO" tooltip="{i18n>COO}">
+				<m:Label text="{i18n>COO}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>COO}" valueState="{defaultValueModel>ValueState/COO}"
+						editable="{defaultValueModel>/DisplaySettings/editable}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="6rem" sortProperty="UnitPrice" filterProperty="UnitPrice" tooltip="{i18n>UnitPrice}">
+				<m:Label text="{i18n>UnitPrice}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>UnitPrice}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="7rem" sortProperty="NetWeight" filterProperty="NetWeight" tooltip="{i18n>NetWeight}">
+				<m:Label text="{i18n>NetWeight}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Input value="{defaultValueModel>NetWeight}" valueState="{defaultValueModel>ValueState/NetWeight}" type="Number"
+						editable="{defaultValueModel>/DisplaySettings/editable}" change="onNetWeight"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column hAlign="Center" width="10rem" sortProperty="ExtendedPrice" filterProperty="ExtendedPrice" tooltip="{i18n>ExtendedPrice}">
+				<m:Label text="{i18n>ExtendedPrice}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>ExtendedPrice}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column id="iZ03" hAlign="Center" width="6rem" sortProperty="Z03" filterProperty="Z03" tooltip="{i18n>Z03}">
+				<m:Label text="{i18n>Z03}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>Z03}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column id="i411K" hAlign="Center" width="6rem" sortProperty="411K" filterProperty="411K" tooltip="{i18n>411K}">
+				<m:Label text="{i18n>411K}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>Z411K}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column id="iDN" hAlign="Center" width="6rem" sortProperty="DN" filterProperty="DN" tooltip="{i18n>DN}">
+				<m:Label text="{i18n>DN}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>DN}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column id="iZ643" hAlign="Center" width="6rem" sortProperty="Z643" filterProperty="Z643" tooltip="{i18n>643}">
+				<m:Label text="{i18n>643}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Text text="{defaultValueModel>Z643}"/>
+				</ui:template>
+			</ui:Column>
+			<ui:Column id="MsgCol" hAlign="Center" width="4rem" visible="true" tooltip="{i18n>ErrorMessage}">
+				<m:Label text="{i18n>ErrorMessage}" design="Bold" wrapping="true"/>
+				<ui:template>
+					<m:Button icon="sap-icon://message-popup" type="Reject" text="{defaultValueModel>MsgCount}" press="onMessagePopOverPress"
+						visible="{= ${defaultValueModel>MsgCount} > 0 }"/>
+				</ui:template>
+			</ui:Column>
+		</ui:columns>
+	</ui:Table>
+</core:FragmentDefinition>

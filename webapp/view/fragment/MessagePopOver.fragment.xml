@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:core="sap.ui.core">
+	<MessagePopover id="MessagePopOverItems" items="{defaultValueModel>/messages}">
+		<items>
+			<MessageItem title="{defaultValueModel>message}"  
+				type="{defaultValueModel>type}" activeTitle="false" subtitle="{defaultValueModel>postingType}"  ></MessageItem>
+		</items>
+	</MessagePopover>
+</core:FragmentDefinition>

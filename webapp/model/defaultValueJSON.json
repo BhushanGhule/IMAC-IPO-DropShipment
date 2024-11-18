@@ -1,0 +1,141 @@
+{
+	"DetailHeaderInital": {
+		"RequestNumber": "0",
+		"Action": "",
+		"ShipperName": "",
+		"ShipperAddress": "",
+		"InvoiceType": "Sale of Goods",
+		"ShipToCode": "",
+		"ShipToAddress": "",
+		"SoldToAddress": "",
+		"VendorCode": "",
+		"VendorName": "",
+		"FreightPayableBy": "",
+		"PaidBy": "",
+		"Incoterm": "",
+		"CarrierAccountNumber": "",
+		"OriginDestinationPoint": "",
+		"MethodOfTransport": "",
+		"ServiceType": "EXPRESS",
+		"DateShipped": "",
+		"Currency": "USD",
+		"CINumber": "",
+		"PalletCarton": "",
+		"TotalShipmentCarton": "",
+		"TotalGrossWeight": "",
+		"TotalVolumeMetricWeight": "0.000",
+		"Measurement": "",
+		"Remarks": "",
+		"Message": "",
+		"Plant": "",
+		"Status": "",
+		"UserName": "",
+		"Author": "",
+		"CreatedOn": "",
+		"LastChangedBy": "",
+		"LastChangedOn": "",
+		"FinalIncoterms": ""
+
+	},
+	"ValueStateHeader": {
+		"ShipperName": "None",
+		"ShipperAddress": "None",
+		"InvoiceType": "None",
+		"ShipToCode": "None",
+		"VendorCode": "None",
+		"FreightPayableBy": "None",
+		"Incoterm": "None",
+		"CarrierAccountNumber": "None",
+		"OriginDestinationPoint": "None",
+		"MethodOfTransport": "None",
+		"ServiceType": "None",
+		"DateShipped": "None",
+		"Currency": "None",
+		"PalletCarton": "None",
+		"TotalShipmentCarton": "None",
+		"TotalGrossWeight": "None"
+	},
+	"DetailItems": [{
+		"RequestNumber": "",
+		"SequenceNumber": "",
+		"POLineItem": "",
+		"SitePO": "",
+		"ImacPO": "",
+		"PackingList": "",
+		"Material": "",
+		"Description": "",
+		"Quantity": "",
+		"UOM": "",
+		"HS": "",
+		"ECN": "",
+		"COO": "",
+		"UnitPrice": "",
+		"NetWeight": "",
+		"ExtendedPrice": "",
+		"Z03": "",
+		"Z411k": "",
+		"Dn": "",
+		"Z643": "",
+		"SAPMessage": "",
+		"OldNew": "NEW"
+
+	}],
+	"DisplaySettings": {
+		"editable": false,
+		"CreateButton": false,
+		"DraftButton": false,
+		"ApproveButton": false,
+		"RejectButton": false,
+		"WithdrawButton": false,
+		"WithdrawLAButton": false,	
+		"CloseButton": false,	
+		"CloseReopenButton": false,			
+		"SubmitButton": false,
+		"Z03Button": false,
+		"_411KButton": false,
+		"DNButton": false,
+		"_643Button": false,
+		"SaveButton": false,
+		"PrintCIButton": false,
+		"SellerVisible": true,
+		"AttachmentDeleteButton" : false,
+		"Reopen" : false
+	},
+	"AdditionalFields": {
+		"ShipToCodeIncoterm": "",
+		"Seller": "Jabil Circuit (Singapore)Pte. Ltd.\n Company/ GST Reg.No./UEN 20-0203640-M \n 16 Tampines  Industrial Crescent, \n Singapore 528604"
+	},
+	"SequenceNumber": "0",
+	"CarrierAll": [],
+	"Carrier": [],
+	"Incoterm": [],
+	"Overview": [],
+	"Audit": [],
+	"CarrierAccountNumber": [],
+	"Attachment": {
+		"AttachmentUploadCounter": 0,
+		"ErrorAttachments": 0,
+		"SuccessAttachments": 0
+	},
+	"AttachmentList": [],
+	"MassProcessingSet": [],
+	"MethodOfTransport": [{
+		"fieldName": "AIR"
+	}, {
+		"fieldName": "COURIER"
+	}, {
+		"fieldName": "SEA"
+	}, {
+		"fieldName": "LAND"
+	}],
+	"ServiceType": [{
+		"fieldName": "EXPRESS"
+	}, {
+		"fieldName": "STANDARD"
+	}],
+	"Currency": [{
+		"fieldName": "USD"
+	}, {
+		"fieldName": "JPY"
+	}]
+}

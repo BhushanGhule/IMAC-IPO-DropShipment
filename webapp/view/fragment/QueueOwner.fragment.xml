@@ -1,0 +1,5 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Popover id="idPopOver" title="{i18n>queueOwnerLabel}" placement="Right" showHeader="true" afterClose="onQueueOwnersAfterclose">
+		<Text text=" {MyInboxRequestModel>ApproverList} " class="sapUiSmallMargin"/>
+	</Popover>
+</core:FragmentDefinition>

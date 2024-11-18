@@ -1,0 +1,194 @@
+<core:FragmentDefinition xmlns:forms="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns="sap.uxap" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:smartfilterbar="sap.ui.comp.smartfilterbar" xmlns:smartField="sap.ui.comp.smartfield">
+	<f:SimpleForm id="ReversalForm" editable="{defaultValueModel>/DisplaySettings/editable}" layout="ResponsiveGridLayout" labelSpanXL="4"
+		labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+		columnsXL="2" columnsL="2" columnsM="2" singleContainerFullSize="false">
+		<f:content>
+			<core:Title text="{i18n>Header}"/>
+			<m:Label text="{i18n>ShipperName}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:Input id="iShipperName" value="{defaultValueModel>/DetailHeader/ShipperName}" width="300px"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/ShipperName}"/>
+			</m:HBox>
+			<m:Label text="{i18n>ShipperAddress}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:TextArea id="idShipperAddress" width="300px" growing="true" growingMaxLines="8" placeholder="Enter Address" maxLength="150" rows="4"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/ShipperAddress}"
+					valueLiveUpdate="false" showExceededText="{defaultValueModel>/DisplaySettings/editable}"
+					value="{defaultValueModel>/DetailHeader/ShipperAddress}" liveChange="handleLiveChangeRemark"></m:TextArea>
+			</m:HBox>
+			<m:Label text="{i18n>InvoiceType}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:Input id="iInvoiceType" value="{defaultValueModel>/DetailHeader/InvoiceType}" editable="{defaultValueModel>/DisplaySettings/editable}"
+					valueState="{defaultValueModel>/ValueStateHeader/InvoiceType}" width="300px" type="Text"/>
+			</m:HBox>
+			<m:Label text="{i18n>ShipToCode}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iShipToCodeComboBox" showSecondaryValues="true" filterSecondaryValues="true" items="{/ZPU_DS_IMACIPO_SHIP_F4}"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/ShipToCode}"
+					change="onShipToCodeChange" class="sapUiTinyMarginEnd" width="300px" selectedKey="{defaultValueModel>/DetailHeader/ShipToCode}">
+					<core:ListItem key="{Title}" text="{Title}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>ShipToAddress}" design="Bold"/>
+			<m:HBox>
+				<m:Text id="iShipToAddress" wrappingType="Hyphenated" text="{defaultValueModel>/DetailHeader/ShipToAddress}"/>
+			</m:HBox>
+			<m:Label text="{i18n>SoldToAddress}" design="Bold"/>
+			<m:HBox>
+				<m:Text id="iSoldToAddress" wrappingType="Hyphenated" text="{defaultValueModel>/DetailHeader/SoldToAddress}"/>
+			</m:HBox>
+			<m:Label text="{i18n>Seller}" design="Bold" visible="{defaultValueModel>/DisplaySettings/SellerVisible}"/>
+			<m:HBox visible="{defaultValueModel>/DisplaySettings/SellerVisible}">
+				<m:Text id="iSeller" wrappingType="Hyphenated" text="{defaultValueModel>/AdditionalFields/Seller}"/>
+			</m:HBox>			
+			<core:Title text=""/>
+			<m:Label text="{i18n>VendorCode}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iVendorCode" showSecondaryValues="true" filterSecondaryValues="true" items="{VendorListModel>/VendorList}"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/VendorCode}"
+					change="onVendorCodeChange" class="sapUiTinyMarginEnd" selectedKey="{defaultValueModel>/DetailHeader/VendorCode}" width="300px">
+					<core:ListItem key="{VendorListModel>Lifnr}" text="{VendorListModel>Lifnr}" additionalText="{VendorListModel>Name}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>VendorName}" design="Bold"/>
+			<m:HBox>
+				<m:Text id="iVendorName" wrappingType="Hyphenated" text="{defaultValueModel>/DetailHeader/VendorName}"/>
+			</m:HBox>
+			<m:Label text="{i18n>FreightPayableBy}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iFreightPayableBy" showSecondaryValues="true" filterSecondaryValues="true" items="{defaultValueModel>/Carrier}"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/FreightPayableBy}"
+					change="onFreightPayableByChange" class="sapUiTinyMarginEnd" width="300px" selectedKey="{defaultValueModel>/DetailHeader/FreightPayableBy}">
+					<core:ListItem key="{defaultValueModel>}" text="{defaultValueModel>}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>PaidBy}" design="Bold"/>
+			<m:HBox>
+				<m:Text id="iPaidBy" wrappingType="Hyphenated" text="{defaultValueModel>/DetailHeader/PaidBy}"/>
+			</m:HBox>
+			<m:Label text="{i18n>Incoterm}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iIncoterm" showSecondaryValues="true" filterSecondaryValues="true" items="{defaultValueModel>/Incoterm}" change="onIncoterm"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/Incoterm}"
+					class="sapUiTinyMarginEnd" width="300px" selectedKey="{defaultValueModel>/DetailHeader/Incoterm}">
+					<core:ListItem key="{defaultValueModel>}" text="{defaultValueModel>}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>FinalIncoterms}" design="Bold"/>
+			<m:HBox>
+				<m:Text id="iFinalIncoterms" wrappingType="Hyphenated" text="{defaultValueModel>/DetailHeader/FinalIncoterms}"/>
+			</m:HBox>
+			<m:Label text="{i18n>CarrierAccountNumber}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iCarrierAccountNumber" showSecondaryValues="true" filterSecondaryValues="true"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/CarrierAccountNumber}"
+					items="{defaultValueModel>/CarrierAccountNumber}" selectedKey="{defaultValueModel>/DetailHeader/CarrierAccountNumber}"
+					change="onCarrierAccountNumber" class="sapUiTinyMarginEnd" width="300px">
+					<core:ListItem key="{defaultValueModel>}" text="{defaultValueModel>}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>OriginDestinationPoint}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iOriginDestinationPoint" showSecondaryValues="true" filterSecondaryValues="true" items="{/ZPU_DS_IMACIPO_DEST_F4}"
+					editable="{defaultValueModel>/DisplaySettings/editable}" change="onOriginDestinationPoint" class="sapUiTinyMarginEnd" width="300px"
+					placeholder="{i18n>OriginDestinationPointNote}" valueState="{defaultValueModel>/ValueStateHeader/OriginDestinationPoint}"
+					selectedKey="{defaultValueModel>/DetailHeader/OriginDestinationPoint}">
+					<core:ListItem key="{Title}" text="{Title}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>MethodOfTransport}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iMethodOfTransport" showSecondaryValues="true" filterSecondaryValues="true" items="{defaultValueModel>/MethodOfTransport}"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/MethodOfTransport}"
+					class="sapUiTinyMarginEnd" width="300px" selectedKey="{defaultValueModel>/DetailHeader/MethodOfTransport}">
+					<core:ListItem key="{defaultValueModel>fieldName}" text="{defaultValueModel>fieldName}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>ServiceType}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iServiceType" showSecondaryValues="true" filterSecondaryValues="true" items="{defaultValueModel>/ServiceType}"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/ServiceType}"
+					class="sapUiTinyMarginEnd" width="300px" selectedKey="{defaultValueModel>/DetailHeader/ServiceType}">
+					<core:ListItem key="{defaultValueModel>fieldName}" text="{defaultValueModel>fieldName}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>DateShipped}" design="Bold" required="true"/>
+			<m:DatePicker id="iDateShipped"
+				value="{ 'path':'defaultValueModel>/DetailHeader/DateShipped', 'type':'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'MM-dd-yyyy', UTC:true } }"
+				editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/DateShipped}"
+				class="sapUiTinyMarginEnd" width="300px"></m:DatePicker>
+			<m:Label text="{i18n>Currency}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:ComboBox id="iCurrency" showSecondaryValues="true" filterSecondaryValues="true" items="{defaultValueModel>/Currency}"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/Currency}"
+					class="sapUiTinyMarginEnd" width="300px" selectedKey="{defaultValueModel>/DetailHeader/Currency}">
+					<core:ListItem key="{defaultValueModel>fieldName}" text="{defaultValueModel>fieldName}"/>
+					<m:layoutData>
+						<l:GridData span="XL3 L3 M3 S12"/>
+					</m:layoutData>
+				</m:ComboBox>
+			</m:HBox>
+			<m:Label text="{i18n>CINumber}" design="Bold"/>
+			<m:HBox>
+				<m:Text id="iCINumber" wrappingType="Hyphenated" text="{defaultValueModel>/DetailHeader/CINumber}"/>
+			</m:HBox>
+			<core:Title text="{i18n>PackingDetails}"/>
+			<m:Label text="{i18n>PalletCarton}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:Input id="iPalletCarton" value="{defaultValueModel>/DetailHeader/PalletCarton}" width="300px" type="Text" change="onPalletCarton"
+					editable="{defaultValueModel>/DisplaySettings/editable}" valueState="{defaultValueModel>/ValueStateHeader/PalletCarton}"/>
+			</m:HBox>
+			<m:Label text="{i18n>TotalShipmentCarton}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:Input id="iTotalShipmentCarton" value="{defaultValueModel>/DetailHeader/TotalShipmentCarton}" width="300px" type="Number"
+					editable="{defaultValueModel>/DisplaySettings/editable}" change="onTotalShipmentCarton"
+					valueState="{defaultValueModel>/ValueStateHeader/TotalShipmentCarton}"/>
+			</m:HBox>
+			<m:Label text="{i18n>Measurement}" design="Bold"/>
+			<m:HBox>
+				<m:TextArea id="iMeasurement" width="300px" growing="true" growingMaxLines="10" placeholder="{i18n>MeasurementExample}" maxLength="250"
+					editable="{defaultValueModel>/DisplaySettings/editable}" rows="4" valueLiveUpdate="false"
+					showExceededText="{defaultValueModel>/DisplaySettings/editable}" value="{defaultValueModel>/DetailHeader/Measurement}"
+					liveChange="handleLiveChangeRemark"></m:TextArea>
+			</m:HBox>
+			<core:Title text=""/>
+			<m:Label text="{i18n>TotalGrossWeight}" design="Bold" required="true"/>
+			<m:HBox>
+				<m:Input id="iTotalGrossWeight" value="{defaultValueModel>/DetailHeader/TotalGrossWeight}" width="300px" type="Number"
+					editable="{defaultValueModel>/DisplaySettings/editable}" change="onTotalGrossWeight"
+					valueState="{defaultValueModel>/ValueStateHeader/TotalGrossWeight}"/>
+			</m:HBox>
+			<m:Label text="{i18n>TotalVolumeMetricWeight}" design="Bold"/>
+			<m:HBox>
+				<m:Input id="iTotalVolumeMetricWeight" value="{defaultValueModel>/DetailHeader/TotalVolumeMetricWeight}" width="300px" type="Number"
+					editable="{defaultValueModel>/DisplaySettings/editable}" change="onTotalVolumeMetricWeight"/>
+			</m:HBox>
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

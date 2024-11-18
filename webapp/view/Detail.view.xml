@@ -1,0 +1,171 @@
+<mvc:View displayBlock="true" controllerName="DropShipment.Z_PU_IMACIPO_DS.controller.Detail" xmlns="sap.uxap" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:m="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{ path : 'defaultValueModel>/DetailHeader/RequestNumber' , formatter: '.formatRequestNumer' }" wrapping="true"
+						class="sapUiSmallMarginEnd"/>
+				</expandedHeading>
+				<navigationActions>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="handleFullScreen" tooltip="{i18n>fullScreenTooltip}"
+						visible="{= ${ComponentModel>/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="handleExitFullScreen"
+						tooltip="{i18n>exitFullScreenTooltip}" visible="{= ${ComponentModel>/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="handleClose" tooltip="{i18n>closeTooltip}"
+						visible="{= ${ComponentModel>/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+				</navigationActions>
+				<actions>
+					<m:Button text="{i18n>createBtn}" type="Emphasized" press="onCreatePress" visible="{defaultValueModel>/DisplaySettings/CreateButton}"
+						enabled="{= ${RequestModel>/Items}.length > 0}">
+						<m:customData>
+							<core:CustomData key="action" value="Create"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>draftBtn}" type="Emphasized" press="onDraftPress" visible="{defaultValueModel>/DisplaySettings/DraftButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Draft"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>approveBtn}" type="Accept" press="onApprovePress" visible="{defaultValueModel>/DisplaySettings/ApproveButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Approve"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>rejectBtn}" type="Reject" press="onRejectPress" visible="{defaultValueModel>/DisplaySettings/RejectButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Reject"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>submitBtn}" type="Emphasized" press="onSubmitPress" visible="{defaultValueModel>/DisplaySettings/SubmitButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Submit"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>withdrawBtn}" type="Reject" press="onWithdrawPress" visible="{defaultValueModel>/DisplaySettings/WithdrawButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Withdraw"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>withdrawBtn}" type="Reject" press="onWithdrawLAPress" visible="{defaultValueModel>/DisplaySettings/WithdrawLAButton}">
+						<m:customData>
+							<core:CustomData key="action" value="WithdrawLA"/>
+						</m:customData>
+					</m:Button>	
+					<m:Button text="{i18n>Save}" tooltip="{i18n>Save}" type="Emphasized" icon="sap-icon://save" press="onSaveButtonPress"
+						visible="{defaultValueModel>/DisplaySettings/SaveButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Save"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>Z03_MIGO}" tooltip="{i18n>Z03_MIGO}" type="Emphasized" press="onPostingButtonPress"
+						visible="{defaultValueModel>/DisplaySettings/Z03Button}">
+						<m:customData>
+							<core:CustomData key="action" value="Z03"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>411K_MIGO_TR}" tooltip="{i18n>411K_MIGO_TR}" type="Emphasized" press="onPostingButtonPress"
+						visible="{defaultValueModel>/DisplaySettings/_411KButton}">
+						<m:customData>
+							<core:CustomData key="action" value="411K"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>DN}" tooltip="{i18n>DN}" type="Emphasized" press="onPostingButtonPress"
+						visible="{defaultValueModel>/DisplaySettings/DNButton}">
+						<m:customData>
+							<core:CustomData key="action" value="DN"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>643}" tooltip="{i18n>643}" type="Emphasized" press="onPostingButtonPress"
+						visible="{defaultValueModel>/DisplaySettings/_643Button}">
+						<m:customData>
+							<core:CustomData key="action" value="643"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>Close}" tooltip="{i18n>Close}" type="Emphasized" press="onClosePress"
+						visible="{defaultValueModel>/DisplaySettings/CloseButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Close"/>
+						</m:customData>
+					</m:Button>	
+					<m:Button text="{i18n>Close}" tooltip="{i18n>Close}" type="Emphasized" press="onCloseReopenPress"
+						visible="{defaultValueModel>/DisplaySettings/CloseReopenButton}">
+						<m:customData>
+							<core:CustomData key="action" value="Close"/>
+						</m:customData>
+					</m:Button>						
+					<m:Button text="{i18n>PrintCI}" tooltip="{i18n>PrintCI}" type="Emphasized" icon="sap-icon://print" press="onPrintCIButtonPress"
+						visible="{defaultValueModel>/DisplaySettings/PrintCIButton}">
+						<m:customData>
+							<core:CustomData key="action" value="PrintCI"/>
+						</m:customData>
+					</m:Button>
+					<m:Button text="{i18n>Reopen}" tooltip="{i18n>ReopenFulfillment}" type="Emphasized"  press="onReopen"
+						visible="{defaultValueModel>/DisplaySettings/Reopen}">
+						<m:customData>
+							<core:CustomData key="action" value="Reopen"/>
+						</m:customData>
+					</m:Button>					
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+		<headerContent>
+			<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch" justifyContent="SpaceBetween">
+				<l:VerticalLayout class="sapUiSmallMarginEnd">
+					<m:ObjectStatus title="{i18n>Status}" text="{defaultValueModel>/DetailHeader/StatusText}" state="Information"/>
+					<m:ObjectStatus title="{i18n>LastUpdate}"
+						text="{ path: 'defaultValueModel>/DetailHeader/LastChangedOn', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MM/dd/yyyy' } }"/>
+					<m:ObjectStatus title="{i18n>LastUpdatedBy}" text="{defaultValueModel>/DetailHeader/LastChangedByText}"/>
+				</l:VerticalLayout>
+			</m:FlexBox>
+		</headerContent>
+		<sections>
+			<ObjectPageSection id="ReversalHeaderSection" title="{i18n>DropShipHeaderLbl}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<core:Fragment fragmentName="DropShipment.Z_PU_IMACIPO_DS.view.fragment.DropShipHeader" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>DropShipItemsTab}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<core:Fragment fragmentName="DropShipment.Z_PU_IMACIPO_DS.view.fragment.DropShipItems" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>overviewTab}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<core:Fragment fragmentName="DropShipment.Z_PU_IMACIPO_DS.view.fragment.Overview" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>attachmentsTab}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<core:Fragment fragmentName="DropShipment.Z_PU_IMACIPO_DS.view.fragment.Attachments" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+			<ObjectPageSection title="{i18n>auditTab}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<core:Fragment fragmentName="DropShipment.Z_PU_IMACIPO_DS.view.fragment.Audit" type="XML"/>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+	</ObjectPageLayout>
+</mvc:View>

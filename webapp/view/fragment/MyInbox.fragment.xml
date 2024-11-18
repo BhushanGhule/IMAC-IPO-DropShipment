@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+	<VBox>
+		<!--Responsive Table for My Inbox requests-->
+		<Table id="MyInboxRequests" inset="false"
+			items="{ path : 'MyInboxRequestModel>/MyInboxSet', sorter: { path: 'RequestNumber', descending : true }}"
+			class="sapFDynamicPageAlignContent" width="auto" sticky="ColumnHeaders,HeaderToolbar" visible="{GlobalModel>/MyInbox}">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="My Inbox ({MyInboxRequestModel>/MyInboxRequests})"/>
+					<ToolbarSpacer/>
+					<SearchField liveChange="onRequestListSearch" width="17rem"/>
+					<OverflowToolbarButton icon="sap-icon://add" tooltip="{i18n>createBtnInb}" press="onRequestCreate"
+						visible="{= ${UserDetailsModel>/Buyer} === true}"/>
+					<OverflowToolbarButton icon="sap-icon://sort" tooltip="{i18n>sortBtnInb}" type="Transparent" press="onRequestListSort"/>
+					<OverflowToolbarButton icon="sap-icon://refresh" tooltip="{i18n>refBtnInb}" type="Transparent" press="onRequestListRefresh"/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="20%">
+					<Label text="{i18n>requestNumberCol}" design="Bold" wrapping="true"/>
+				</Column>
+				<Column width="20%">
+					<Label text="{i18n>createdOnCol}" design="Bold" wrapping="true"/>
+				</Column>
+				<Column width="10%" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Label text="{i18n>mfgPlantCol}" design="Bold" wrapping="true"/>
+				</Column>
+				<Column width="15%" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Label text="{i18n>reqNameCol}" design="Bold" wrapping="true"/>
+				</Column>
+				<Column width="14%" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Label text="{i18n>statusReq}" design="Bold" wrapping="true"/>
+				</Column>
+				<Column width="14%" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+					<Label text="{i18n>queueCol}" design="Bold" wrapping="true"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onRequestNavigation">
+					<cells>
+						<ObjectIdentifier title="{MyInboxRequestModel>RequestNumber}"/>
+						<Text text="{ path: 'MyInboxRequestModel>CreatedOn' , formatter:'.formatDate' }"/>
+						<Text text="{MyInboxRequestModel>Plant}"/>
+						<Text text="{MyInboxRequestModel>AuthorTxt}"/>
+						<Text text="{MyInboxRequestModel>StatusTxt}"/>
+						<Link text="{MyInboxRequestModel>UserNameTxt}" tooltip="{MyInboxRequestModel>ApproverList}" press="onQueueOwnerLink"
+							enabled="{= ${MyInboxRequestModel>ApproverList} !== ''}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--Smart Table and Smart Filter for Dashboard-->
+		<smartFilterBar:SmartFilterBar id="DashboardSmartFilter" entitySet="ZPU_C_DS_DASHBOARD" persistencyKey="DashboardDropShipmentKeyFilter"
+			useToolbar="true" visible="{= ${GlobalModel>/MyInbox} === false}"></smartFilterBar:SmartFilterBar>
+		<smartTable:SmartTable id="DashboardSmartTable" entitySet="ZPU_C_DS_DASHBOARD" smartFilterId="DashboardSmartFilter"
+			tableType="ResponsiveTable" useExportToExcel="true" useVariantManagement="true" useTablePersonalisation="true" header="Dashboard Requests"
+			showRowCount="true" class="sapUiResponsiveContentPadding" persistencyKey="DashboardDropShipmentKeyLayout" enableAutoBinding="false"
+			beforeRebindTable="onBeforeRebindTable" fitContainer="true" exportType="UI5Client" visible="{= ${GlobalModel>/MyInbox} === false}"
+			demandPopin="true">
+			<Table inset="false" class="sapFDynamicPageAlignContent" sticky="ColumnHeaders,HeaderToolbar" growing="true" growingThreshold="100"
+				growingScrollToLoad="true">
+				<ColumnListItem type="Navigation" press="onDashboardItemSelect"></ColumnListItem>
+			</Table>
+		</smartTable:SmartTable>
+	</VBox>
+</core:FragmentDefinition>

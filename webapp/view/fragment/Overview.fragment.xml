@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Table inset="false" items="{ path : 'defaultValueModel>/Overview', sorter: { path: 'seqnum', ascending : true }}"
+		class="sapFDynamicPageAlignContent" width="auto" growing="true" growingThreshold="100" growingScrollToLoad="true">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Case Content"/>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<columns>
+			<Column>
+				<Text text="{i18n>processCol}"/>
+			</Column>
+			<Column>
+				<Text text="{i18n>statusCol}"/>
+			</Column>
+			<Column>
+				<Text text="{i18n>completionDateCol}"/>
+			</Column>
+			<Column>
+				<Text text="{i18n>performedBy}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>remarksCol}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{defaultValueModel>Descript}"/>
+					<ObjectIdentifier title="{defaultValueModel>Status}"/>
+					<Text text="{ path: 'defaultValueModel>timestamp' , type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MM/dd/yyyy' } }"/>
+					<Text text="{defaultValueModel>Change_user}"/>
+					<Text text="{defaultValueModel>Remarks}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

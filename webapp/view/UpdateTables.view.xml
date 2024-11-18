@@ -1,0 +1,26 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" 
+	controllerName="DropShipment.Z_PU_IMACIPO_DS.controller.UpdateTables" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>updateCustomeTables}">
+				<customHeader>
+					<Toolbar>
+						<u:FileUploader class="text" placeholder="{i18n>selectFile}" id="fUploader" name="myFileUpload" fileType="xlsx" uploadUrl="upload/"/>
+						<Button icon="sap-icon://BusinessSuiteInAppSymbols/icon-source" text="{i18n>Upload}" press="onUpload"/>
+						<Button icon="sap-icon://BusinessSuiteInAppSymbols/icon-target" text="{i18n>Download}" press="onDownload"/>
+					</Toolbar>
+				</customHeader>
+				<content>
+					<VBox class="sapUiSmallMargin">
+						<Label labelFor="rbg1" text="{i18n>SelectTable}" design="Bold"/>
+						<RadioButtonGroup id="rbg1" columns="1" width="100%" class="sapUiMediumMarginBottom" selectedIndex="0">
+							<RadioButton id="RB1-1" text="{i18n>ZIMACIPO_DS_SHIP}"/>
+							<RadioButton id="RB1-2" text="{i18n>ZIMACIPO_DS_CAR}"/>
+							<RadioButton id="RB1-3" text="{i18n>ZIMACIPO_DS_DEST}"/>
+						</RadioButtonGroup>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

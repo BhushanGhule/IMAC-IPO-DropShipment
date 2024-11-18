@@ -1,0 +1,15 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog id="ViewSettingsDialog"
+		confirm="handleRequestsSort" sortDescending="true">
+		<sortItems>
+			<ViewSettingsItem text="{i18n>requestNumberCol}" key="1" selected="true" />
+			<ViewSettingsItem text="{i18n>createdOnCol}" key="2" /> 
+			<ViewSettingsItem text="{i18n>mfgPlantCol}" key="3" />
+			<ViewSettingsItem text="{i18n>reqNameCol}" key="4" />
+			<ViewSettingsItem text="{i18n>statusReq}" key="5" />
+			<ViewSettingsItem text="{i18n>queueCol}" key="6" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,23 @@
+<mvc:View displayBlock="true" controllerName="DropShipment.Z_PU_IMACIPO_DS.controller.Master" height="100%" xmlns="sap.m"
+	xmlns:core="sap.ui.core" xmlns:f="sap.f" xmlns:mvc="sap.ui.core.mvc" xmlns:smartTable="sap.ui.comp.smarttable" xmlns:ui="sap.ui.table"
+	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar">
+	<f:DynamicPage id="dynamicPageId" fitContent="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading></f:heading>
+				<f:actions>
+					<ToggleButton id="ToggleButtonMyInbox" icon="sap-icon://work-history"  enabled="true" pressed="false" press="onMyDashboardPress"/>
+					<Button id="UpdateTables" text="{i18n>UpdateTables}" tooltip="{i18n>UpdateCustomTables}"  icon="sap-icon://BusinessSuiteInAppSymbols/icon-set-as-default" enabled="true"  press="onUpdateTables"
+					 visible="{= (${UserDetailsModel>/SME} === true) || (${UserDetailsModel>/LogisticsAnalyst} === true) }"/>
+					<Button id="MassProcessing" text="{i18n>MassProcessing}" tooltip="{i18n>MassProcessing}"  icon="sap-icon://SAP-icons-TNT/batch-processing" enabled="true"  press="onMassProcessing"
+					 visible="{= (${UserDetailsModel>/SME} === true) || (${UserDetailsModel>/LogisticsAnalyst} === true) }"/>					 
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:content>
+			<VBox visible="true">
+			<core:Fragment fragmentName="DropShipment.Z_PU_IMACIPO_DS.view.fragment.MyInbox" type="XML" class="sapUiNoMargin sapUiNoContentPadding"/>
+	        </VBox>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

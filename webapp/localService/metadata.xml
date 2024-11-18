@@ -1,0 +1,39 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='ECC')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='ECC')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='ECC')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='ECC')/$value"><edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='ECC')/$value"><edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZOD_PU_IMACIPO_DS_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="ZPU_DS_IMACIPO_CARR_F4Type" sap:label="F4 Search for Shipping Table - ZIMACIPO_DS_CAR" sap:content-version="1">
+				<Key><PropertyRef Name="title"/></Key><Property Name="title" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Title"/><Property Name="incoterm" Type="Edm.String" MaxLength="42" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Incoterm"/><Property Name="carrier" Type="Edm.String" MaxLength="45" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Carrier"/></EntityType>
+			<EntityType Name="ZPU_DS_IMACIPO_DEST_F4Type" sap:label="F4 Search for Shipping Table - ZIMACIPO_DS_DEST" sap:content-version="1">
+				<Key><PropertyRef Name="title"/></Key><Property Name="title" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Title"/></EntityType>
+			<EntityType Name="ZPU_DS_IMACIPO_SHIP_F4Type" sap:label="F4 Search for Shipping Table - ZIMACIPO_DS_SHIP" sap:content-version="1">
+				<Key><PropertyRef Name="Title"/></Key><Property Name="Title" Type="Edm.String" Nullable="false" MaxLength="8" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Title"/><Property Name="ShipToAddress" Type="Edm.String" MaxLength="250" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Ship to Address"/><Property Name="SoldToAddress" Type="Edm.String" MaxLength="250" sap:display-format="UpperCase" sap:label="" sap:quickinfo="Sold to Address"/></EntityType>
+			<EntityContainer Name="ZOD_PU_IMACIPO_DS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx"><EntitySet Name="ZPU_DS_IMACIPO_CARR_F4" EntityType="ZOD_PU_IMACIPO_DS_SRV.ZPU_DS_IMACIPO_CARR_F4Type" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZPU_DS_IMACIPO_DEST_F4" EntityType="ZOD_PU_IMACIPO_DS_SRV.ZPU_DS_IMACIPO_DEST_F4Type" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/><EntitySet Name="ZPU_DS_IMACIPO_SHIP_F4" EntityType="ZOD_PU_IMACIPO_DS_SRV.ZPU_DS_IMACIPO_SHIP_F4Type" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/></EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZOD_PU_IMACIPO_DS_SRV.ZOD_PU_IMACIPO_DS_SRV_Entities">
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue><PropertyValue Property="Rollup" EnumMember="None"/></Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZOD_PU_IMACIPO_DS_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZOD_PU_IMACIPO_DS_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

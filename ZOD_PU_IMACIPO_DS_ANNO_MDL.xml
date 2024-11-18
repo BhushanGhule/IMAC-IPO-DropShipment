@@ -1,0 +1,212 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='ECC')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='ECC')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+	</edmx:Reference>
+	<edmx:Reference
+		Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='ECC')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+	</edmx:Reference>
+	<edmx:Reference Uri="../../../sap/zod_pu_imacipo_ds_srv/$metadata">
+		<edmx:Include Namespace="ZOD_PU_IMACIPO_DS_SRV" Alias="SAP"/>
+	</edmx:Reference>
+	<edmx:DataServices>
+		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="zod_pu_imacipo_ds_anno_mdl.v1">
+			<Annotations Target="ZOD_PU_IMACIPO_DS_SRV.ZPU_C_DS_DASHBOARDType">
+				<Annotation Term="UI.LineItem">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Request"/>
+							<PropertyValue Property="Value" Path="RequestNo"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Request Status"/>
+							<PropertyValue Property="Value" Path="ReqSTATUS"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Created By"/>
+							<PropertyValue Property="Value" Path="CreatedBy"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Requestor Email"/>
+							<PropertyValue Property="Value" Path="ReqestorEmail"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Ship To Code Short"/>
+							<PropertyValue Property="Value" Path="shiptocode"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="IMAC PO"/>
+							<PropertyValue Property="Value" Path="IMACPO"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Packing List Number"/>
+							<PropertyValue Property="Value" Path="PACKINGLISTno"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Site PO"/>
+							<PropertyValue Property="Value" Path="SITEPO"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="643"/>
+							<PropertyValue Property="Value" Path="z643"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="DN"/>
+							<PropertyValue Property="Value" Path="DN"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="411"/>
+							<PropertyValue Property="Value" Path="z411k"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Z03"/>
+							<PropertyValue Property="Value" Path="Z03"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Measurement"/>
+							<PropertyValue Property="Value" Path="Measurement"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Total Volume Metric Weight"/>
+							<PropertyValue Property="Value" Path="TotVolMetWt"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Total Shipment Carton(s) (in Number)"/>
+							<PropertyValue Property="Value" Path="TotShipmentCarton"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Pallet/Carton (in Number)"/>
+							<PropertyValue Property="Value" Path="PALLETCARTON"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Total Gross Weight (kg)"/>
+							<PropertyValue Property="Value" Path="TOTGROSSWEIGHT"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Net Weight"/>
+							<PropertyValue Property="Value" Path="NETWEIGHT"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Extended Price"/>
+							<PropertyValue Property="Value" Path="EXTENDEDPRICE"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Unit Price"/>
+							<PropertyValue Property="Value" Path="UNITPRICE"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Currency"/>
+							<PropertyValue Property="Value" Path="CURRENCY"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="ECN"/>
+							<PropertyValue Property="Value" Path="ECN"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="UOM"/>
+							<PropertyValue Property="Value" Path="UOM"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="HS"/>
+							<PropertyValue Property="Value" Path="HS"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="COO"/>
+							<PropertyValue Property="Value" Path="COO"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Description"/>
+							<PropertyValue Property="Value" Path="Description"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Sold to Address"/>
+							<PropertyValue Property="Value" Path="SoldtoAddress"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Ship to Postal Code"/>
+							<PropertyValue Property="Value" Path="ShiptoPostalCode"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Ship to Country"/>
+							<PropertyValue Property="Value" Path="ShiptoCountry"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Ship to address"/>
+							<PropertyValue Property="Value" Path="Shiptoaddress"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Shipper Country"/>
+							<PropertyValue Property="Value" Path="ShipperCountry"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Shipper Address"/>
+							<PropertyValue Property="Value" Path="ShipperAddress"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Shipper Name"/>
+							<PropertyValue Property="Value" Path="ShipperName"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Service Type"/>
+							<PropertyValue Property="Value" Path="ServiceType"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Method of Transport"/>
+							<PropertyValue Property="Value" Path="MethodofTransport"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Carrier &amp; Account Number"/>
+							<PropertyValue Property="Value" Path="CarrierAccountNo"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Freight Payable By"/>
+							<PropertyValue Property="Value" Path="FreightPayableBy"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Incoterm"/>
+							<PropertyValue Property="Value" Path="Incoterm"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Invoice type"/>
+							<PropertyValue Property="Value" Path="Invoicetype"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Date Shipped"/>
+							<PropertyValue Property="Value" Path="DATESHIPPED"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Finalincoterm"/>
+							<PropertyValue Property="Value" Path="FinalincotermINCOTERMS"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Quantity"/>
+							<PropertyValue Property="Value" Path="QUANTITY"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Vendor Code"/>
+							<PropertyValue Property="Value" Path="vendorcode"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Label" String="Material Number"/>
+							<PropertyValue Property="Value" Path="Material"/>
+						</Record>
+					</Collection>
+				</Annotation>
+				<Annotation Term="UI.SelectionFields">
+					<Collection>
+						<PropertyPath>RequestNo</PropertyPath>
+						<PropertyPath>Material</PropertyPath>
+						<PropertyPath>SITEPO</PropertyPath>
+						<PropertyPath>CreatedOn</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="ZOD_PU_IMACIPO_DS_SRV.ZPU_C_DS_REQ_HEADType/i_reqnum">
+				<Annotation Term="UI.Hidden"/>
+			</Annotations>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

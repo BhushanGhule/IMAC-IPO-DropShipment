@@ -1,0 +1,140 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:m="sap.m" xmlns:ui="sap.ui.table" xmlns="sap.m"
+	controllerName="DropShipment.Z_PU_IMACIPO_DS.controller.MassProcessing" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Mass Processing">
+				<content>
+					<ui:Table id="iMassProcessingTable" rows="{ path : 'defaultValueModel>/MassProcessingSet',sorter : {path : 'RequestNumber',group : true}}"
+						selectionMode="None" enableCellFilter="false" sort="handleSort" filter="handleFilter" showColumnVisibilityMenu="true"
+						class="sapUiSizeCompact" enableColumnReordering="true" enableGrouping="true">
+						<ui:extension>
+							<m:OverflowToolbar>
+								<m:ToolbarSpacer/>
+								<m:Button text="{i18n>Z03_MIGO}" tooltip="{i18n>Z03_MIGO}" type="Transparent" press="onActionButtonPress">
+									<m:customData>
+										<core:CustomData key="action" value="Z03"/>
+									</m:customData>
+								</m:Button>
+								<m:Button text="{i18n>411K_MIGO_TR}" tooltip="{i18n>411K_MIGO_TR}" type="Transparent" press="onActionButtonPress">
+									<m:customData>
+										<core:CustomData key="action" value="411K"/>
+									</m:customData>
+								</m:Button>
+								<m:Button text="{i18n>DN}" tooltip="{i18n>DN}" type="Transparent" press="onActionButtonPress">
+									<m:customData>
+										<core:CustomData key="action" value="DN"/>
+									</m:customData>
+								</m:Button>
+								<m:Button text="{i18n>643}" tooltip="{i18n>643}" type="Transparent" press="onActionButtonPress">
+									<m:customData>
+										<core:CustomData key="action" value="643"/>
+									</m:customData>
+								</m:Button>
+								<m:ComboBox id="MessageFilterDropDownMass" items="{ path: 'GlobalModel>/MessageFilters/items', sorter: { path: 'Text' } }"
+									change="handleMessageFilterChange" visible="true"
+									enabled="{= ${defaultValueModel>/MassProcessingSet}.length > 0}">
+									<core:Item key="{GlobalModel>Key}" text="{GlobalModel>Text}"/>
+								</m:ComboBox>
+								<m:Button type="Transparent" press="onDownloadItems" icon="sap-icon://excel-attachment" tooltip="{i18n>downloadItemsTooltip}"/>
+							</m:OverflowToolbar>
+						</ui:extension>
+						<ui:columns>
+							<ui:Column id="iSelect" hAlign="Begin" width="4rem">
+								<m:CheckBox select="onSelectAll"/>
+								<ui:template>
+									<m:CheckBox selected="{defaultValueModel>Check}" select="onSelectSingle"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iRequestNumber" hAlign="Center" width="5rem" sortProperty="RequestNumber" filterProperty="RequestNumber"
+								tooltip="{i18n>requestNumberCol}">
+								<m:Label text="{i18n>requestNumberCol}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>RequestNumber}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iPolineItem" hAlign="Center" width="5rem" sortProperty="PolineItem" filterProperty="PolineItem" tooltip="{i18n>POLineItem}">
+								<m:Label text="{i18n>POLineItem}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>PolineItem}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iCreatedBy" hAlign="Center" width="8rem" sortProperty="CreatedBy" filterProperty="CreatedBy" tooltip="{i18n>CreatedBy}">
+								<m:Label text="{i18n>CreatedBy}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>CreatedBy}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iSitePO" hAlign="Center" width="6rem" sortProperty="SitePO" filterProperty="SitePO" tooltip="{i18n>SitePO}">
+								<m:Label text="{i18n>SitePO}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>SitePO}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iImacPO" hAlign="Center" width="6rem" sortProperty="ImacPO" filterProperty="ImacPO" tooltip="{i18n>ImacPO}">
+								<m:Label text="{i18n>ImacPO}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>ImacPO}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iVendorCode" hAlign="Center" width="5rem" sortProperty="VendorCode" filterProperty="VendorCode" tooltip="{i18n>VendorCode}">
+								<m:Label text="{i18n>VendorCode}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>VendorCode}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iPart" hAlign="Center" width="10rem" sortProperty="Part" filterProperty="Part" tooltip="{i18n>Part}">
+								<m:Label text="{i18n>Part}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>Material}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iQuantity" hAlign="Center" width="5rem" sortProperty="Quantity" filterProperty="Quantity" tooltip="{i18n>Quantity}">
+								<m:Label text="{i18n>Quantity}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>Quantity}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iZ03" hAlign="Center" width="6rem" sortProperty="Z03" filterProperty="Z03" tooltip="{i18n>Z03}">
+								<m:Label text="{i18n>Z03}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>Z03}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="i411K" hAlign="Center" width="6rem" sortProperty="411K" filterProperty="411K" tooltip="{i18n>411K}">
+								<m:Label text="{i18n>411K}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>Z411K}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iDN" hAlign="Center" width="6rem" sortProperty="DN" filterProperty="DN" tooltip="{i18n>DN}">
+								<m:Label text="{i18n>DN}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>DN}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iZ643" hAlign="Center" width="6rem" sortProperty="Z643" filterProperty="Z643" tooltip="{i18n>643}">
+								<m:Label text="{i18n>643}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>Z643}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iCINumber" hAlign="Center" width="10rem" sortProperty="CINumber" filterProperty="CINumber" tooltip="{i18n>CINumber}">
+								<m:Label text="{i18n>CINumber}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Text text="{defaultValueModel>CINumber}"/>
+								</ui:template>
+							</ui:Column>
+							<ui:Column id="iSAPMessage" hAlign="Center" width="5rem" sortProperty="SAPMessage" filterProperty="SAPMessage" tooltip="{i18n>ErrorMessage}">
+								<m:Label text="{i18n>ErrorMessage}" design="Bold" wrapping="true"/>
+								<ui:template>
+									<m:Button icon="sap-icon://message-popup" type="Reject" text="{defaultValueModel>MsgCount}" press="onMessagePopOverPress"
+										visible="{= ${defaultValueModel>MsgCount} > 0 }"/>
+								</ui:template>
+							</ui:Column>
+						</ui:columns>
+					</ui:Table>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

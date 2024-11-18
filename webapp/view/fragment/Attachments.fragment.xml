@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified" xmlns:upload="sap.m.upload">
+	<UploadCollection id="IdAttachmentUploadCollection" items="{ path: 'defaultValueModel>/AttachmentList', templateShareable: false }"
+		fileDeleted="onFileDeleted">
+		<toolbar>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<u:FileUploader id="AttachmentUploadCollection" buttonText=" " buttonOnly="true" useMultipart="false" change="onAttachmentChange"
+					icon="sap-icon://add" fileType="pdf,docx,xls,msg" typeMissmatch="onTypeMissmatch" sendXHR="true" uploadStart="onBeforeUploadStarts"
+					uploadComplete="onUploadComplete" fileSizeExceed="onFileSizeExceed" maximumFileSize="3" sameFilenameAllowed="true"
+					enabled="{= ${defaultValueModel>/Attachment/AttachmentUploadCounter} !== 0}"/>
+			</OverflowToolbar>
+		</toolbar>
+		<infoToolbar>
+			<Toolbar>
+				<Title visible="{= ${defaultValueModel>/Attachment/AttachmentUploadCounter} !== 0}" text="{defaultValueModel>/Attachment/AttachmentUploadCounter} {i18n>attachmentCountMsg}"/>
+				<Title visible="{= ${defaultValueModel>/Attachment/AttachmentUploadCounter} === 0}" level="H3" text="{i18n>maxAttchmentText}"/>
+			</Toolbar>
+		</infoToolbar>
+		<items>
+			<UploadCollectionItem documentId="{defaultValueModel>GUID}" url="{defaultValueModel>URL}" fileName="{defaultValueModel>FileName}"
+				mimeType="{defaultValueModel>MIMEType}" visibleEdit="false" visibleDelete="{defaultValueModel>/DisplaySettings/AttachmentDeleteButton}"/>
+		</items>
+	</UploadCollection>
+</core:FragmentDefinition>

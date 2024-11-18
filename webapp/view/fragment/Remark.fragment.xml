@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog contentWidth="45%" afterClose="onRemarksAfterclose">
+		<customHeader>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Title text="{i18n>Remarks}" level="H2"/>
+				<ToolbarSpacer/>
+			</Toolbar>
+		</customHeader>
+		<TextArea value="{defaultValueModel>/DetailHeader/Remarks}" maxLength="250" width="100%" showExceededText="true" valueLiveUpdate="false"
+			liveChange="handleLiveChangeRemark"/>
+		<Toolbar>
+			<ToolbarSpacer/>
+			<Button type="Accept" width="10em" text="{i18n>Submit}" press="onSubmitRemarkBox"/>
+			<Button type="Reject" width="10em" text="{i18n>closeBtn}" press="onRemarkBoxClose"/>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

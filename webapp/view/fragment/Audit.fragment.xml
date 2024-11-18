@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+	<Table inset="false" items="{ path : 'defaultValueModel>/Audit', sorter: { path: 'Timestamp', ascending : true }}"
+		class="sapFDynamicPageAlignContent" width="auto" growing="true" growingThreshold="100" growingScrollToLoad="true">
+		<columns>
+			<Column>
+				<Text text="{i18n>dateCol}"/>
+			</Column>
+			<Column>
+				<Text text="{i18n>descriptionCol}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>oldValueCol}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>newValueCol}"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline">
+				<Text text="{i18n>performedByCol}"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{ path: 'defaultValueModel>Timestamp' , type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MM/dd/yyyy HH:mm' } }"/>
+					<Text text="{defaultValueModel>Descript}"/>
+					<Text text="{defaultValueModel>OldValue}"/>
+					<Text text="{defaultValueModel>NewValue}"/>
+					<Text text="{defaultValueModel>Change_user_t}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

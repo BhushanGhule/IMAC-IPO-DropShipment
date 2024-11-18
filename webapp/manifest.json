@@ -1,0 +1,202 @@
+{
+    "_version": "1.12.0",
+    "sap.app": {
+        "id": "DropShipment.Z_PU_IMACIPO_DS",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponentForManifest",
+            "version": "0.0.0",
+            "toolsId": "2fcc3f84-bcd2-45b1-93c5-f4b29fbc7aa2"
+        },
+        "dataSources": {
+            "ZOD_PU_IMACIPO_DS_SRV": {
+                "uri": "/sap/opu/odata/sap/ZOD_PU_IMACIPO_DS_SRV/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/metadata.xml",
+                    "annotations": [
+                        "ZOD_PU_IMACIPO_DS_ANNO_MDL"
+                    ]
+                }
+            },
+            "defaultValueDataSource": {
+                "uri": "model/defaultValueJSON.json",
+                "type": "JSON"
+            },
+            "WFSERVICE": {
+                "uri": "/sap/opu/odata/iwwrk/WFSERVICE/",
+                "type": "OData",
+                "settings": {
+                    "localUri": "localService/WFSERVICE/metadata.xml"
+                }
+            },
+            "ZOD_PU_IMACIPO_DS_ANNO_MDL": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZOD_PU_IMACIPO_DS_ANNO_MDL',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZOD_PU_IMACIPO_DS_ANNO_MDL.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "rootView": {
+            "viewName": "DropShipment.Z_PU_IMACIPO_DS.view.FlexibleColumnLayout",
+            "type": "XML",
+            "async": true,
+            "id": "fcl"
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.6",
+            "libs": {
+                "sap.ui.layout": {},
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.f": {}
+            }
+        },
+        "config": {
+            "fullWidth": true
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "DropShipment.Z_PU_IMACIPO_DS.i18n.i18n"
+                }
+            },
+            "": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZOD_PU_IMACIPO_DS_SRV",
+                "preload": true
+            },
+            "defaultValueModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "defaultValueDataSource",
+                "preload": true
+            },
+            "WorkflowSrv": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneWay",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "WFSERVICE",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "model/jszip.js"
+                },
+                {
+                    "uri": "model/xlsx.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.f.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "DropShipment.Z_PU_IMACIPO_DS.view",
+                "controlId": "fcl",
+                "transition": "slide"
+            },
+            "routes": [
+                {
+                    "pattern": ":layout:",
+                    "name": "master",
+                    "target": [
+                        "master"
+                    ]
+                },
+                {
+                    "pattern": "detail/:requestNumber:/{layout}",
+                    "name": "detail",
+                    "target": [
+                        "master",
+                        "detail"
+                    ]
+                },
+                {
+                    "pattern": "updatetables/{layout}",
+                    "name": "updatetables",
+                    "target": [
+                        "master",
+                        "updatetables"
+                    ]
+                },
+                {
+                    "pattern": "massprocessing/{layout}",
+                    "name": "massprocessing",
+                    "target": [
+                        "master",
+                        "massprocessing"
+                    ]
+                }
+            ],
+            "targets": {
+                "master": {
+                    "viewName": "Master",
+                    "controlAggregation": "beginColumnPages"
+                },
+                "detail": {
+                    "viewName": "Detail",
+                    "controlAggregation": "midColumnPages"
+                },
+                "updatetables": {
+                    "viewName": "UpdateTables",
+                    "controlAggregation": "midColumnPages"
+                },
+                "massprocessing": {
+                    "viewName": "MassProcessing",
+                    "controlAggregation": "midColumnPages"
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/z_pu_imacipo_ds/webapp",
+        "_version": "1.1.0"
+    }
+}
